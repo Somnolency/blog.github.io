@@ -1,0 +1,100 @@
+
+body{
+    /* body */
+    position: relative;
+    width: 360px;
+    height: 780px;
+
+
+    background: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.64);
+}
+.container{
+    /* container */
+    position: absolute;
+    width: 360px;
+    height: 780px;
+    top: 0;
+    left: 0;
+
+
+    border-radius: 10px;
+}
+.form-box{
+    /* form-box */
+    position: absolute;
+    width: 360px;
+    height: 415.33px;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+
+
+    background: rgb(24, 93, 57);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 15px;
+}
+.home-box{
+    /* form-box */
+    position: absolute;
+    width: 360px;
+    height: 415.33px;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+
+
+    background: rgb(24, 93, 57);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 15px;
+}
+.question-box h1{
+    /* 环保人格测试 */
+    position: absolute;
+    width: 317px;
+    height: 62px;
+    top: 199px;
+    left: 60px;
+
+
+    color: rgb(24, 93, 57);
+    font-family: Microsoft YaHei;
+    font-size: 43px;
+    font-weight: 700;
+    line-height: 57px;
+    letter-spacing: 10px;
+    text-align: left;
+}
+.question-box{
+    /* options-box */
+    position: absolute;
+    width: 275.4px;
+    height: 386.61px;
+    top: 393.39px;
+    left: 50.76px;
+
+
+    background: rgb(232, 181, 181);
+}
+.con-box{
+    /* con-box */
+    position: absolute;
+    width: 360px;
+    height: 780px;
+    top: 0;
+    left: 0;
+
+
+    background: rgb(192, 223, 207);
+}
+.con-box img {
+    /* 小人图片 */
+    position: absolute;
+    width: 146.22px;
+    height: 143.09px;
+    top: 589.21px;
+    left: 106.43px;
+
+
+    background: rgb(196, 196, 196);
+}
