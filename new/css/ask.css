@@ -157,7 +157,7 @@ body{
 }
 .con-box img{
     width: 150px;
-    height: 150px;
+    height: auto;
     opacity: 0.9;
     margin: 10px 0;
 }
