@@ -42,8 +42,8 @@
             <button id="login">退出答题</button>
         </div>
         <div class="con-box right">
-            <h2>欢迎测试<span>环保人格</span></h2>
-            <p>快来看看你的<span>环保人格</span>吧</p>
+            <h2 id="con_right_h">欢迎测试<span>环保人格</span></h2>
+            <p id="con_right_p">快来看看你的<span>环保人格</span>吧</p>
             <img src="images/4.jpg" alt="" id="img_right">
             <p></p>
             <button id="register" style="display: none">重新测试</button>
@@ -198,6 +198,8 @@
              document.getElementById("home_figure").style.display = "block";
              document.getElementById("register").style.display="block";
              document.getElementById("figure_exp").style.display="block";
+             document.getElementById("con_right_h").style.display="none";
+             document.getElementById("con_right_p").style.display="none";
              if (max===score_1){
                 document.getElementById("home_figure").textContent = "低调执念者";
                 document.getElementById("figure_exp").textContent = "小行动，大改变！我们日常中的生活习惯，都与地球生态息息相关，保护环境并非一日之事，需要我们每个人做一点点，从一件小事做起。你是绿色环保人格中的低调执念者，注重从生活中的节约环保开始，比如随手关灯，打包剩菜，节约用水。每一位低调执着者都是星空中的一颗颗小星星，点亮漫天灿烂。"
@@ -245,7 +247,6 @@
             form_box.style.transform='translateX(80%)';
             home_box.classList.add('hidden');
             question_box.classList.remove('hidden');
-            document.getElementById("img_right").src = "images/4.jpg";
             scoreInit(q_all.length+1, 6);
             optReload(q_all,order);
         });
@@ -341,6 +342,9 @@
              form_box.style.transform='translateX(80%)';
              home_box.classList.add('hidden');
              question_box.classList.remove('hidden');
+             document.getElementById("img_right").src = "images/4.jpg";
+             document.getElementById("con_right_h").style.display="block";
+             document.getElementById("con_right_p").style.display="block";
              scoreInit(3, 6);
              optReload(q_all,order);
          })
