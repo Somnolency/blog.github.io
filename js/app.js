@@ -5,19 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
     VolantisFancyBox.init();
     highlightKeyWords.startFromURL();
     locationHash();
-
-    volantis.pjax.push(() => {
-      VolantisApp.pjaxReload();
-      VolantisFancyBox.init();
-      sessionStorage.setItem("domTitle", document.title);
-      highlightKeyWords.startFromURL();
-    }, 'app.js');
-    volantis.pjax.send(() => {
-      volantis.dom.switcher.removeClass('active'); // 关闭移动端激活的搜索框
-      volantis.dom.header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
-      volantis.dom.wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
-      volantis.EventListener.remove() // 移除事件监听器 see: layout/_partial/scripts/global.ejs
-    }, 'app.js');
   });
 });
 
@@ -119,7 +106,7 @@ const VolantisApp = (() => {
   // 校正页面定位（被导航栏挡住的区域）
   fn.scrolltoElement = (elem, correction = scrollCorrection) => {
     volantis.scroll.to(elem, {
-      top: elem.offsetTop - correction
+      top: elem.getBoundingClientRect().top + document.documentElement.scrollTop - correction
     })
   }
 
@@ -210,6 +197,7 @@ const VolantisApp = (() => {
       volantis.dom.comment.click(e => { // 评论按钮点击后 跳转到评论区域
         e.preventDefault();
         e.stopPropagation();
+        volantis.cleanContentVisibility();
         fn.scrolltoElement(volantis.dom.commentTarget);
         e.stopImmediatePropagation();
       });
@@ -234,7 +222,7 @@ const VolantisApp = (() => {
           }
           volantis.dom.toc.removeClass('active');
         });
-      } else volantis.dom.toc.style.display = 'none'; // 隐藏toc目录按钮
+      } else if (volantis.dom.toc) volantis.dom.toc.style.display = 'none'; // 隐藏toc目录按钮
     }
   }
 
@@ -349,16 +337,16 @@ const VolantisApp = (() => {
       e.stopPropagation();
       volantis.dom.header.toggleClass('z_search-open'); // 激活移动端搜索框
       volantis.dom.switcher.toggleClass('active'); // 移动端搜索按钮
-    }, false); // false : pjax 不移除监听
+    });
     // 点击空白取消激活
     volantis.dom.$(document).click(function (e) {
       volantis.dom.header.removeClass('z_search-open');
       volantis.dom.switcher.removeClass('active');
-    }, false); // false : pjax 不移除监听
+    });
     // 移动端点击搜索框 停止事件传播
     volantis.dom.search.click(function (e) {
       e.stopPropagation();
-    }, false); // false : pjax 不移除监听
+    });
   }
 
   // 设置 tabs 标签  【移动端 PC】
@@ -515,8 +503,8 @@ const VolantisApp = (() => {
   // 消息提示：标准
   fn.message = (title, message, option = {}, done = null) => {
     if (typeof iziToast === "undefined") {
-      volantis.css(volantis.GLOBAL_CONFIG.plugins.message.css)
-      volantis.js(volantis.GLOBAL_CONFIG.plugins.message.js, () => {
+      volantis.css(volantis.GLOBAL_CONFIG.cdn.izitoast_css)
+      volantis.js(volantis.GLOBAL_CONFIG.cdn.izitoast_js, () => {
         tozashMessage(title, message, option, done);
       });
     } else {
@@ -561,8 +549,8 @@ const VolantisApp = (() => {
   // 消息提示：询问
   fn.question = (title, message, option = {}, success = null, cancel = null, done = null) => {
     if (typeof iziToast === "undefined") {
-      volantis.css(volantis.GLOBAL_CONFIG.plugins.message.css)
-      volantis.js(volantis.GLOBAL_CONFIG.plugins.message.js, () => {
+      volantis.css(volantis.GLOBAL_CONFIG.cdn.izitoast_css)
+      volantis.js(volantis.GLOBAL_CONFIG.cdn.izitoast_js, () => {
         tozashQuestion(title, message, option, success, cancel, done);
       });
     } else {
@@ -622,8 +610,8 @@ const VolantisApp = (() => {
     }
 
     if (typeof iziToast === "undefined") {
-      volantis.css(volantis.GLOBAL_CONFIG.plugins.message.css)
-      volantis.js(volantis.GLOBAL_CONFIG.plugins.message.js, () => {
+      volantis.css(volantis.GLOBAL_CONFIG.cdn.izitoast_css)
+      volantis.js(volantis.GLOBAL_CONFIG.cdn.izitoast_js, () => {
         hideMessage(done);
       });
     } else {
@@ -669,23 +657,6 @@ const VolantisApp = (() => {
       fn.setTabs();
       fn.footnotes();
     },
-    pjaxReload: () => {
-      fn.event();
-      fn.restData();
-      fn.setHeader();
-      fn.setHeaderMenuSelection();
-      fn.setPageHeaderMenuEvent();
-      fn.setScrollAnchor();
-      fn.setTabs();
-      fn.footnotes();
-
-      // 移除小尾巴的移除
-      document.querySelector("#l_header .nav-main").querySelectorAll('.list-v:not(.menu-phone)').forEach(function (e) {
-        e.removeAttribute("style")
-      })
-      document.querySelector("#l_header .menu-phone.list-v").removeAttribute("style");
-      messageCopyrightShow = 0;
-    },
     utilCopyCode: fn.utilCopyCode,
     utilWriteClipText: fn.utilWriteClipText,
     utilTimeAgo: fn.utilTimeAgo,
@@ -703,8 +674,8 @@ const VolantisFancyBox = (() => {
   const fn = {};
 
   fn.loadFancyBox = (done) => {
-    volantis.css(volantis.GLOBAL_CONFIG.plugins.fancybox.css);
-    volantis.js(volantis.GLOBAL_CONFIG.plugins.fancybox.js).then(() => {
+    volantis.css(volantis.GLOBAL_CONFIG.cdn.fancybox_css);
+    volantis.js(volantis.GLOBAL_CONFIG.cdn.fancybox_js).then(() => {
       if (done) done();
     })
   }
