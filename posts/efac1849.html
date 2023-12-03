@@ -44,8 +44,8 @@
 <meta property="og:description" content="iOS的快捷指令是个好东西，但是很多地方却用起来特别别扭，本人用了一个下午的时间用快捷指令实现了c语言的一些功能。还有更多的想法目前还未实现，希望我的这些思考能够抛砖引玉。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2023-12-03T08:48:21.123Z">
-<meta property="article:modified_time" content="2023-12-03T08:48:21.123Z">
+<meta property="article:published_time" content="2023-12-03T09:39:38.327Z">
+<meta property="article:modified_time" content="2023-12-03T09:39:38.327Z">
 <meta property="article:author" content="追光">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="随笔">
@@ -2146,7 +2146,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1701593311781),
+    lastupdate: new Date(1701596388189),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2494,7 +2494,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
         
           
-            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2023-12-03T08:48:21+00:00">
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2023-12-03T09:39:38+00:00">
   <a class='notlink'>
     <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
     <p>发布于：2023年12月3日</p>
@@ -2515,7 +2515,62 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div id="post-body" itemprop="articleBody">
     <p>iOS的快捷指令是个好东西，但是很多地方却用起来特别别扭，本人用了一个下午的时间用快捷指令实现了c语言的一些功能。还有更多的想法目前还未实现，希望我的这些思考能够抛砖引玉。</p>
 <span id="more"></span>
-<h1 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h1><h1 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h1>
+<h2 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h2><p>while循环可以通过递归与if语言来实现，由于我不清楚ios快捷指令的特性，所以我选择使用词典作为传递递归停止条件与变量的方式。下面使用c语言来演示一下原理</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+// 定义一个递归函数，参数n表示当前要打印的数字
+void print_loop(int n) &#123;
+    // 如果n小于等于10，就打印n，并继续调用自身，将n加1
+    if (n &lt;= 10) &#123;
+        printf(&quot;%d\n&quot;, n);
+        print_loop(n + 1);
+    &#125;
+    // 否则，就退出函数，结束递归
+    else &#123;
+        return;
+    &#125;
+&#125;
+
+int main() &#123;
+    // 调用递归函数，从1开始打印
+    print_loop(1);
+    return 0;
+&#125;
+</code></pre>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><pre><code class="c">#include &lt;stdio.h&gt;
+
+int main() &#123;
+    int lst[] = &#123;1, 2, 3, 4, 5&#125;; // 定义一个数组
+    int len = sizeof(lst) / sizeof(lst[0]); // 计算数组的长度
+    int i = 0; // 定义一个索引变量，初始化为0
+    while (1) &#123; // 无限循环
+        if (i &lt; len) &#123; // 如果索引变量小于数组的长度
+            printf(&quot;%d\n&quot;, lst[i]); // 打印数组中的元素
+            i++; // 将索引变量加1
+        &#125;
+        else &#123;
+            break; // 跳出循环
+        &#125;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="ios快捷指令与C语言的等效语法"><a href="#ios快捷指令与C语言的等效语法" class="headerlink" title="ios快捷指令与C语言的等效语法"></a>ios快捷指令与C语言的等效语法</h2><ul>
+<li><p>变量：iOS快捷指令中可以使用“添加到变量”和“获取变量”操作来创建和访问变量，C语言中可以使用变量名和赋值语句来创建和访问变量。</p>
+</li>
+<li><p>数据类型：iOS快捷指令中可以使用“文本”、“数字”、“布尔值”、“日期”、“字典”、“列表”等数据类型，C语言中可以使用“char”、“int”、“float”、“double”、“bool”、“struct”、“array”等数据类型。</p>
+</li>
+<li><p>控制结构：iOS快捷指令中可以使用“如果”、“重复执行”、“退出重复”等操作来实现条件判断和循环控制，C语言中可以使用“if”、“else”、“for”、“break”等语句来实现条件判断和循环控制。</p>
+</li>
+<li><p>函数：iOS快捷指令中可以使用“运行快捷指令”操作来调用其他快捷指令作为函数，C语言中可以使用函数名和参数列表来定义和调用函数。</p>
+</li>
+</ul>
+<blockquote>
+<p>IOS快捷指令中的“重复执行每个”我总感觉像是python中的for循环，但是特别别扭</p>
+</blockquote>
+<h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>IOS的快捷指令其实更像python的语法，但是快捷指令的数据类型是真的让人头大，数据类型的辅助操作函数不丰富，像len函数这些就没有，最重要的是变量的命名太麻烦了(也可能是我不熟悉快捷指令)。</p>
+<p>快捷指令的外部api功能非常有限，就比如只有打开app的api，没有关闭app的api(有返回桌面的api)；提供调用快捷指令api的app似乎都是苹果官方的。</p>
+
   </div>
   
   
@@ -2556,7 +2611,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-12-03T08:48:21+00:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-12-03T09:39:38+00:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2023年12月3日</p>
@@ -2747,7 +2802,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
   <div class='content'>
-      
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#while%E5%BE%AA%E7%8E%AF"><span class="toc-text">while循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8D%E5%8E%86"><span class="toc-text">遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ios%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4%E4%B8%8EC%E8%AF%AD%E8%A8%80%E7%9A%84%E7%AD%89%E6%95%88%E8%AF%AD%E6%B3%95"><span class="toc-text">ios快捷指令与C语言的等效语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%90%E6%A7%BD"><span class="toc-text">吐槽</span></a></li></ol>
   </div>
 </section>
 
@@ -3655,7 +3710,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"追光随笔","url":"https://ior.ink/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"追光","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ior.ink/","sameAs":["https://github.com/volantis-x"],"description":"个人博客, 追光, Somnolency"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ior.ink/","name":"追光随笔"}},{"@type":"ListItem","position":2,"item":{"@id":"https://ior.ink/categories/CodeLearning/","name":"代码学习"}},{"@type":"ListItem","position":3,"item":{"@id":"https://ior.ink/posts/efac1849.html","name":"使用快捷指令实现while循环以及基础函数"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"追光随笔","url":"https://ior.ink/","keywords":null,"description":"个人博客, 追光, Somnolency","author":{"@type":"Person","name":"追光","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ior.ink/","description":"个人博客, 追光, Somnolency"},"publisher":{"@type":"Organization","name":"追光随笔","url":"https://ior.ink/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ior.ink?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"使用快捷指令实现while循环以及基础函数","description":"iOS的快捷指令是个好东西，但是很多地方却用起来特别别扭，本人用了一个下午的时间用快捷指令实现了c语言的一些功能。还有更多的想法目前还未实现，希望我的这些思考能够抛砖引玉。","inLanguage":["zh-CN","en","zh-HK","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://ior.ink/posts/efac1849.html"},"author":{"@type":"Person","name":"追光","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ior.ink/"},"publisher":{"@type":"Organization","name":"追光随笔","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://ior.ink/posts/efac1849.html","wordCount":86,"datePublished":"2023-12-03T08:48:21.123Z","dateModified":"2023-12-03T08:48:21.123Z","articleSection":"代码学习","keywords":"C,随笔","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"追光随笔","url":"https://ior.ink/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"追光","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ior.ink/","sameAs":["https://github.com/volantis-x"],"description":"个人博客, 追光, Somnolency"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://ior.ink/","name":"追光随笔"}},{"@type":"ListItem","position":2,"item":{"@id":"https://ior.ink/categories/CodeLearning/","name":"代码学习"}},{"@type":"ListItem","position":3,"item":{"@id":"https://ior.ink/posts/efac1849.html","name":"使用快捷指令实现while循环以及基础函数"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"追光随笔","url":"https://ior.ink/","keywords":null,"description":"个人博客, 追光, Somnolency","author":{"@type":"Person","name":"追光","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ior.ink/","description":"个人博客, 追光, Somnolency"},"publisher":{"@type":"Organization","name":"追光随笔","url":"https://ior.ink/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://ior.ink?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"使用快捷指令实现while循环以及基础函数","description":"iOS的快捷指令是个好东西，但是很多地方却用起来特别别扭，本人用了一个下午的时间用快捷指令实现了c语言的一些功能。还有更多的想法目前还未实现，希望我的这些思考能够抛砖引玉。","inLanguage":["zh-CN","en","zh-HK","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://ior.ink/posts/efac1849.html"},"author":{"@type":"Person","name":"追光","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://ior.ink/"},"publisher":{"@type":"Organization","name":"追光随笔","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://ior.ink/posts/efac1849.html","wordCount":86,"datePublished":"2023-12-03T09:39:38.327Z","dateModified":"2023-12-03T09:39:38.327Z","articleSection":"代码学习","keywords":"C,随笔","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
