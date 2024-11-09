@@ -255,7 +255,7 @@ th {
 }
 @font-face {
   font-family: 'ComicCode';
-  src: url("http://oss-private.static.ior.ink/static/font/Comic.ttf");
+  src: url("https://oss.static.ior.ink/static/font/Comic.ttf");
   font-weight: 'normal';
   font-style: 'normal';
   font-display: swap;
