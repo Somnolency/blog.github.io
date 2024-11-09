@@ -367,7 +367,7 @@ button {
   margin-top: 32px;
 }
 .cover-wrapper .cover-body .title {
-  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-family: "CustomFontCat", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
   font-size: 3.125rem;
   line-height: 1.2;
   text-shadow: 0 1px 2px rgba(0,0,0,0.1);
@@ -790,8 +790,8 @@ button {
   font-display: swap;
 }
 @font-face {
-  font-family: 'Varela Round';
-  src: url("https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/VarelaRound/VarelaRound-Regular.ttf");
+  font-family: 'CustomFontCat';
+  src: url("https://blog-test-1.oss-cn-hangzhou.aliyuncs.com/blog/source/font/fontzipMin.ttf");
   font-weight: 'normal';
   font-style: 'normal';
   font-display: swap;
@@ -914,7 +914,7 @@ button {
   line-height: 64px;
   padding: 0 24px;
   font-size: 1.25rem;
-  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-family: "CustomFontCat", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
 }
 .l_header #wrapper .nav-main .title img {
   height: 64px;

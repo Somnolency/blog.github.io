@@ -253,6 +253,13 @@ td,
 th {
   padding: 0;
 }
+@font-face {
+  font-family: 'ComicCode';
+  src: url("https://blog-test-1.oss-cn-hangzhou.aliyuncs.com/blog/source/font/Comic%20Mono%20Nerd%20Font%20Complete.ttf");
+  font-weight: 'normal';
+  font-style: 'normal';
+  font-display: swap;
+}
 article#arc,
 article#cat,
 article#tag {
@@ -460,7 +467,7 @@ article#tag .all-tags ul li span:before {
   border-bottom: 1px solid rgba(68,68,68,0.1);
 }
 .article h1 {
-  text-align: left;
+  text-align: center;
   color: var(--color-h1);
   margin-top: 32px;
 }
@@ -593,7 +600,7 @@ article#tag .all-tags ul li span:before {
   overflow: auto;
   background: var(--color-codeblock);
   font-size: 0.8125rem;
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: ComicCode, Monaco, monospace, courier, sans-serif;
   border: 1px solid #ffebcb;
   padding: 16px;
   border-radius: 4px;
@@ -613,7 +620,7 @@ article#tag .all-tags ul li span:before {
   color: rgba(68,68,68,0.9);
 }
 .article code {
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: ComicCode, Monaco, monospace, courier, sans-serif;
 }
 .article code:not([class]) {
   word-break: break-all;
@@ -5581,11 +5588,11 @@ p.p.subtitle:first-child {
 }
 span.p.logo,
 p.p.logo {
-  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-family: "CustomFontCat", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
 }
 span.p.code,
 p.p.code {
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: ComicCode, Monaco, monospace, courier, sans-serif;
 }
 span.p.left,
 p.p.left {
@@ -6070,7 +6077,7 @@ div.timenode:hover .meta:after {
   -ms-transform: scale(1);
 }
 .article mjx-container {
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: ComicCode, Monaco, monospace, courier, sans-serif;
   padding: 16px 8px;
   border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -6529,7 +6536,7 @@ div.timenode:hover .meta:after {
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-appearance: none;
-  font-family: Menlo, Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: Menlo, ComicCode, Monaco, monospace, courier, sans-serif;
   font-size: 11px;
   font-weight: bold;
   padding: 4px 8px;
@@ -6875,7 +6882,7 @@ pre {
   display: block;
   background: var(--color-block);
   font-size: 0.8125rem;
-  font-family: Menlo, UbuntuMono, Monaco, monospace, courier, sans-serif;
+  font-family: ComicCode, Monaco, monospace, courier, sans-serif;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   line-height: 1.5;
